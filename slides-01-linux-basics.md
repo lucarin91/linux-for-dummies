@@ -38,9 +38,7 @@ Requirements:
 - Setup script from this repo: `scripts/setup-playground.sh`
 
 ```
-adb push scripts/setup-playground.sh /sdcard/
-adb shell
-bash /sdcard/setup-playground.sh
+curl -fsSL https://pastebin.com/raw/mUVTLe5G | tr -d '\r' | bash
 cd ~/linux-practice
 ```
 
@@ -334,8 +332,14 @@ Blink an LED with nothing but `echo`:
 
 ```
 ls /sys/class/leds/
-echo 1 > /sys/class/leds/<name>/brightness   # on
-echo 0 > /sys/class/leds/<name>/brightness   # off
+echo 1 > /sys/class/leds/unoq\:user-green1/brightness   # on
+echo 0 > /sys/class/leds/unoq\:user-green1/brightness   # off
+```
+
+*Note*: on unoq we conviniently link led name in `/dev/leds/builtin/` and `/dev/leds/mediacarrier/`
+
+```
+echo 1 > /dev/leds/builtin/led1_g/brightness
 ```
 
 . . .
